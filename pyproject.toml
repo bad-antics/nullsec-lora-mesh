@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "nullsec-lora-mesh"
+version = "0.1.0"
+description = "Zero-leakage, high-speed compressed mesh communications over LoRa"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "NullSec", email = "badxantics@gmail.com"},
+]
+keywords = [
+    "lora", "mesh", "encryption", "compression",
+    "flipper-one", "radio", "protocol", "security",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Communications",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = [
+    "cryptography>=41.0",
+    "lz4>=4.3",
+    "zstandard>=0.21",
+    "pyserial>=3.5",
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1",
+]
+flipper = [
+    "pyusb>=1.2",
+    "protobuf>=4.0",
+]
+
+[project.scripts]
+lora-mesh = "node.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["protocol*", "transport*", "radio*", "node*", "apps*"]
